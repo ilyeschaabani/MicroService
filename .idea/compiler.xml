@@ -9,15 +9,15 @@
         <outputRelativeToContentRoot value="true" />
         <module name="EurekaServer" />
         <module name="Gateway" />
-        <module name="ProjetMicroService" />
       </profile>
-      <profile name="Annotation profile for Authentification-MicroService" enabled="true">
+      <profile name="Annotation profile for ProjetMicroService" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar" />
         </processorPath>
+        <module name="ProjetMicroService" />
         <module name="Authentification-MicroService" />
       </profile>
     </annotationProcessing>
