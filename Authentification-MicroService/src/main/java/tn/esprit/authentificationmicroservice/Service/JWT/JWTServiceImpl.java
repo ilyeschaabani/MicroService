@@ -13,6 +13,7 @@ import java.security.Key;
 import java.security.PrivateKey;
 import java.util.Base64;
 import java.util.Date;
+import java.util.Map;
 import java.util.function.Function;
 
 @Service
@@ -24,6 +25,13 @@ public class JWTServiceImpl implements JWTService {
         return Jwts.builder().setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
+                .signWith(getSiginKey(),SignatureAlgorithm.HS512)
+                .compact();
+    }
+    public String generateRefreshToken(Map<String,Object> claims, UserDetails userDetails) {
+        return Jwts.builder().setClaims(claims).setSubject(userDetails.getUsername())
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + 604800000))
                 .signWith(getSiginKey(),SignatureAlgorithm.HS512)
                 .compact();
     }

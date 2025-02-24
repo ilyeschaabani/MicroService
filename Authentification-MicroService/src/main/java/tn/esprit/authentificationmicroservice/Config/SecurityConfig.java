@@ -1,12 +1,8 @@
 package tn.esprit.authentificationmicroservice.Config;
 
-
 import lombok.RequiredArgsConstructor;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -18,43 +14,37 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import tn.esprit.authentificationmicroservice.Entity.Enum.Role;
 import tn.esprit.authentificationmicroservice.Service.User.UserService;
-
-
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    @Autowired
-    private final  JwtAuthFilter jwtAuthFilter;
-    @Autowired
+    private final JwtAuthFilter jwtAuthFilter;
     private final UserService userService;
-
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable()) // New way to disable CSRF
+        http
+                .csrf(csrf -> csrf.disable()) // Disable CSRF for stateless APIs
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers("/api/Admin/**").hasAnyAuthority(Role.ADMIN.name())
-                        .requestMatchers("/api/Etudiant/**").hasAnyAuthority(Role.ETUDIANT.name())
-                        .requestMatchers("/api/Encadrant/**").hasAnyAuthority(Role.ENCADRANT.name())
-                        .requestMatchers("/api/Consultant/**").hasAnyAuthority(Role.CONSULTANT.name())
-
-                        .anyRequest().authenticated()
+                        .requestMatchers("api/auth/**").permitAll() // Allow access to /auth/** without authentication
+                        .requestMatchers("/h2-console/**").permitAll() // Allow access to H2 console
+                        .requestMatchers("/api/Admin/**").hasAnyAuthority("ADMIN")
+                        .requestMatchers("/api/Etudiant/**").hasAnyAuthority("ETUDIANT")
+                        .requestMatchers("/api/Encadrant/**").hasAnyAuthority("ENCADRANT")
+                        .requestMatchers("/api/Consultant/**").hasAnyAuthority("CONSULTANT")
+                        .anyRequest().authenticated() // Require authentication for all other endpoints
                 )
                 .authenticationProvider(authentificationProvider())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
-        // For H2 console
+        // Disable frame options for H2 console
         http.headers(headers -> headers.frameOptions(frame -> frame.disable()));
         return http.build();
     }
-
 
     @Bean
     public AuthenticationProvider authentificationProvider() {
@@ -70,10 +60,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration  config) throws Exception {
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
-
-
-
 }

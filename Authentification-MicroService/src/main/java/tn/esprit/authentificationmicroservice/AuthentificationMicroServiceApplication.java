@@ -21,22 +21,24 @@ public class AuthentificationMicroServiceApplication implements CommandLineRunne
 	public static void main(String[] args) {
 		SpringApplication.run(AuthentificationMicroServiceApplication.class, args);
 	}
+	@Override
 	public void run(String... args) throws Exception {
-		User admineaccount = userRepository.findByRole(Role.ADMIN);
-		if(admineaccount == null) {
+		User adminAccount = userRepository.findByRole(Role.ADMIN);
+		if (adminAccount == null) {
 			User user = new User();
-			user.setEmail("admine@admine.com");
-			user.setNom("admine");
-			user.setPrenom("admine");
+			user.setEmail("admin@admin.com");
+			user.setNom("admin");
+			user.setPrenom("admin");
 			user.setTelephone("12345678");
-			user.setAdresse("admine");
-			user.setPassword(new BCryptPasswordEncoder().encode("admine"));
+			user.setAdresse("admin");
+			user.setPassword(new BCryptPasswordEncoder().encode("admin"));
 			user.setRole(Role.ADMIN);
 			userRepository.save(user);
 		}
+	}
 
 
 	}
 
 
-}
+

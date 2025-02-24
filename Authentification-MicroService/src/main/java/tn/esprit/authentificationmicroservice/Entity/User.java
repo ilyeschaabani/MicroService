@@ -1,6 +1,9 @@
 package tn.esprit.authentificationmicroservice.Entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,31 +16,35 @@ import java.util.List;
 
 @Entity
 @Data
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-@ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Table(name = "app_user")
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long idUser;
+
+    @NotBlank
     String nom;
+
+    @NotBlank
     String prenom;
+
+    @Email
+    @NotBlank
     String email;
+
+    @NotBlank
     String password;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     Role role;
 
-    //String photo;
+    @NotBlank
     String telephone;
+
+    @NotBlank
     String adresse;
-
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
