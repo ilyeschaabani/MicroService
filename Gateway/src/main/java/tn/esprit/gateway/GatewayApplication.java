@@ -19,6 +19,8 @@ public class GatewayApplication {
         return builder.routes()
                 .route("Authentification-MicroService",r->r.path("/Authentification-MicroService/**")
                         .uri("lb://Authentification-MicroService") )
+                .route("ProjetMicroService",r->r.path("/ProjetMicroService/**")
+                        .uri("lb://ProjetMicroService") )
                 .build();
     }
 
