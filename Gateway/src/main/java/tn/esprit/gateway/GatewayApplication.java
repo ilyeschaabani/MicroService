@@ -21,6 +21,8 @@ public class GatewayApplication {
                         .uri("lb://Authentification-MicroService") )
                 .route("ProjetMicroService", r -> r.path("/api/projets/**")
                         .uri("http://localhost:8082"))
+                .route("AccompagnementPFEMicroService", r -> r.path("/api/accompagnement/**")
+                        .uri("http://localhost:8081"))
 
                 .build();
     }
