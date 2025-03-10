@@ -1,21 +1,14 @@
 package com.example.ressourcemicroservice.Repository;
 
 import com.example.ressourcemicroservice.Entity.Ressources;
-import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.stereotype.Repository;
-
-
+import com.example.ressourcemicroservice.Entity.Enumeration.CategoryRessource;
+import com.example.ressourcemicroservice.Entity.Enumeration.TypeRessource;
+import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
-@Repository
-public interface RessourcesRepository extends MongoRepository<Ressources, String> {
+public interface RessourcesRepository extends JpaRepository<Ressources, Long> {
 
-    // Recherche par titre (ignorer la casse)
-    List<Ressources> findByTitreIgnoreCase(String titre);
-
-    // Recherche par type de ressource
-    List<Ressources> findByType(String type);
-
-    // Recherche par catégorie
-    List<Ressources> findByCategory(String category);
+    List<Ressources> findByTitreContainingIgnoreCase(String titre);
+    List<Ressources> findByType(TypeRessource type);
+    List<Ressources> findByCategory(CategoryRessource category);
 }

@@ -1,43 +1,40 @@
 package com.example.ressourcemicroservice.Entity;
 
-
 import com.example.ressourcemicroservice.Entity.Enumeration.CategoryRessource;
 import com.example.ressourcemicroservice.Entity.Enumeration.TypeRessource;
+import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.FieldDefaults;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
-
 
 import java.util.Date;
 
-@Document(collection = "ressources") // Spécifie la collection MongoDB
+@Entity
+@Table(name = "ressources")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-@ToString
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Ressources {
 
     @Id
-    @Field("idRessource") // Nom du champ dans MongoDB
-    String idRessource;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idRessource;
 
-    String titre;
-    String description;
+    @Column(nullable = false, length = 255)
+    private String titre;
 
-    // Enregistre en tant que chaîne pour éviter des erreurs avec MongoDB
-    TypeRessource type;
+    @Column(columnDefinition = "TEXT")
+    private String description;
 
-    Date date;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 50)
+    private TypeRessource type;
 
-    CategoryRessource category;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
+    private Date date;
 
-    /* Relation ManyToOne non supportée par MongoDB directement
-    @ManyToOne
-    User user;
-    */
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 50)
+    private CategoryRessource category;
 }
