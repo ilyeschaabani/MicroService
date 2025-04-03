@@ -17,13 +17,14 @@ public class GatewayApplication {
     @Bean
     public RouteLocator gatewayRoutes(RouteLocatorBuilder builder){
         return builder.routes()
-                .route("Authentification-MicroService",r->r.path("/Authentification-MicroService/**")
-                        .uri("lb://Authentification-MicroService") )
-                .route("projetmicroservice", r -> r.path("/api/projets/**")
-                        .uri("lb://projetmicroservice")) // Minuscule
+               // .route("Authentification-MicroService",r->r.path("/Authentification-MicroService/**")
+                //        .uri("lb://Authentification-MicroService") )
+               // .route("projetmicroservice", r -> r.path("/api/projets/**")
+              //          .uri("lb://projetmicroservice")) // Minuscule
 
                 .route("AccompagnementPFEMicroService", r -> r.path("/api/accompagnement/**")
-                        .uri("http://localhost:8081"))
+                        .uri("lb:ACCOMPAGNEMENTPFEMICROSERVICE"))
+
 
                 .build();
     }
