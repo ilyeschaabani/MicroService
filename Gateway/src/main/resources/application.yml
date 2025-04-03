@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: ACCOMPAGNEMENTPFEMICROSERVICE
+          uri: lb://ACCOMPAGNEMENTPFEMICROSERVICE
+          predicates:
+            - Path=/api/accompagnement/**  # Updated to include all sub-paths
+
+server:
+  port: 9094
+eureka:
+  instance:
+    hostname: localhost
