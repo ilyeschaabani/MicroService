@@ -8,11 +8,11 @@
 		<version>3.4.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>ProjetMicroService</artifactId>
+	<groupId>tn.esprit</groupId>
+	<artifactId>ProjectMicroService</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ProjetMicroService</name>
-	<description>ProjetMicroService</description>
+	<name>ProjectMicroService</name>
+	<description>ProjectMicroService</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -64,6 +64,11 @@
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
