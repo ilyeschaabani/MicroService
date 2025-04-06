@@ -1,0 +1,33 @@
+version: "3.8"
+services:
+  microserviceevaluation:
+    container_name: microserviceevalcontainer
+    image: "evaluation:1.0"
+    build: ./microserviceevaluation
+    ports:
+      - "8080:8068"
+    hostname: evaluation
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://microeval:3306/DBEvaluation?autoReconnect=true&useSSL=false
+      - EURER_A_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8761/eureka/
+    depends_on:
+      - discovery-service
+      - docker-mysql
+
+  docker-mysql:
+    container_name: docker-mysql
+    image: "mysql:5.6"
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_DATABASE=DBEvaluation
+    ports:
+      - "3306:3306"
+
+  discovery-service:
+    container_name: eurekacontainer
+    image: "eureka/eurekaimage:1.0"
+    build: ./eureka
+    ports:
+      - "8761:8761"
+    environment:
+      - EURER_A_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekacontainer:8761/eureka/

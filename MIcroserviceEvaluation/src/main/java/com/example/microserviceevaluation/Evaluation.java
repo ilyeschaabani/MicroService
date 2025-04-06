@@ -1,52 +1,105 @@
 package com.example.microserviceevaluation;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
 
+import java.util.HashSet;
+import java.util.Set;
+
+@Table(name = "evaluations")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "evaluations")
 public class Evaluation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idEvaluation;
+    private Long idEvaluation;
+
+    private String titre;
+    private int note;
+    private String description;
+    @Column(nullable = false)
+    private String maxMarks;
 
     @Column(nullable = false)
-    private int scoreMaximum; // Le score maximum du quiz
+    private String noOfQuestions;
+    private boolean active = false;
+    private Long quesId;
 
-    private int scoreObtenu; // Score obtenu par l'étudiant
 
-    private int note; // Note finale obtenue
+    @OneToMany(mappedBy = "evaluation", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Question> questions = new HashSet<>();
 
-    @Column(columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP", nullable = false)
-    private LocalDateTime dateDebut; // Date de début de l’évaluation
 
-    @Column(columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP", nullable = false)
-    private LocalDateTime dateFin; // Date de fin de l’évaluation
+    public Long getIdEvaluation() {
+        return idEvaluation;
+    }
 
-    @Column(columnDefinition = "DATETIME")
-    private LocalDateTime datePassage; // Date où l'étudiant a passé l’évaluation
+    public void setIdEvaluation(Long idEvaluation) {
+        this.idEvaluation = idEvaluation;
+    }
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private EtatEvaluation etatEvaluation; // Etat de l'évaluation (en cours, terminé, annulé, etc.)
+    public String getTitre() {
+        return titre;
+    }
 
-    @PrePersist
-    protected void onCreate() {
-        if (dateDebut == null) {
-            dateDebut = LocalDateTime.now();
-        }
-        if (dateFin == null) {
-            dateFin = dateDebut.plusHours(1); // Par défaut, une évaluation dure 1 heure
-        }
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+
+    public int getNote() {
+        return note;
+    }
+
+    public void setNote(int note) {
+        this.note = note;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getMaxMarks() {
+        return maxMarks;
+    }
+
+    public void setMaxMarks(String maxMarks) {
+        this.maxMarks = maxMarks;
+    }
+
+    public String getNoOfQuestions() {
+        return noOfQuestions;
+    }
+
+    public void setNoOfQuestions(String noOfQuestions) {
+        this.noOfQuestions = noOfQuestions;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public Long getQuesId() {
+        return quesId;
+    }
+
+    public void setQuesId(Long quesId) {
+        this.quesId = quesId;
     }
 }

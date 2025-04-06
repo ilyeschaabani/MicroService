@@ -1,46 +1,78 @@
 package com.example.microserviceevaluation;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.Set;
 
 @RestController
-@RequestMapping("/evaluation")
+@RequestMapping("/evaluations")
+@RequiredArgsConstructor
 public class EvaluationController {
 
     @Autowired
     private EvaluationService evaluationService;
 
-    // Créer ou mettre à jour une évaluation
-    @PostMapping
-    public ResponseEntity<Evaluation> createOrUpdateEvaluation(@RequestBody Evaluation evaluation) {
-        Evaluation savedEvaluation = evaluationService.saveEvaluation(evaluation);
-        return new ResponseEntity<>(savedEvaluation, HttpStatus.CREATED);
+
+    // Create a new evaluation
+    @PostMapping("/add")
+    public Evaluation createEvaluation(@RequestBody Evaluation evaluation) {
+        return evaluationService.createEvaluation(evaluation);
+
     }
 
-    // Récupérer toutes les évaluations
-    @GetMapping
+    // Get all evaluations
+    @GetMapping("/listeval")
     public ResponseEntity<List<Evaluation>> getAllEvaluations() {
         List<Evaluation> evaluations = evaluationService.getAllEvaluations();
-        return new ResponseEntity<>(evaluations, HttpStatus.OK);
+        return ResponseEntity.ok(evaluations);
     }
 
-    // Récupérer une évaluation par son ID
-    @GetMapping("/{id}")
-    public ResponseEntity<Evaluation> getEvaluationById(@PathVariable int id) {
-        Optional<Evaluation> evaluation = evaluationService.getEvaluationById(id);
-        return evaluation.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    // Update an evaluation
+    @PutMapping("/{idEvaluation}")
+    public ResponseEntity<Evaluation> updateEvaluation(
+            @PathVariable("idEvaluation") Long idEvaluation,
+            @RequestBody Evaluation evaluation) {
+        evaluation.setIdEvaluation(idEvaluation);
+        Evaluation updatedEvaluation = evaluationService.updateEvaluation(evaluation);
+        return ResponseEntity.ok(updatedEvaluation);
     }
+//
+    // Delete an evaluation
+    @DeleteMapping("/{idEvaluation}")
+    public void deleteEvaluation(@PathVariable Long idEvaluation) {
+        evaluationService.deleteEvaluation(idEvaluation);
 
-    // Supprimer une évaluation par son ID
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteEvaluation(@PathVariable int id) {
-        evaluationService.deleteEvaluation(id);
-        return ResponseEntity.noContent().build();
+    }
+//
+    // Get evaluation by ID
+@GetMapping("/{idEvaluation}")
+public Evaluation getEvaluationById(@PathVariable Long idEvaluation) {
+    return evaluationService.getEvaluationById(idEvaluation);
+}
+
+//
+//    // Submit evaluation answers
+//    @PostMapping("/{idEvaluation}/submit")
+//    public ResponseEntity<?> submitEvaluationAnswers(
+//            @PathVariable Long idEvaluation,
+//            @RequestBody Map<String, Object> payload) {
+//
+//        List<Object> answers = (List<Object>) payload.get("answers");
+//        // Process answers (you would typically save these to MySQL)
+//        System.out.println("Réponses reçues pour l'évaluation " + idEvaluation + ": " + answers);
+//
+//        return ResponseEntity.ok("Réponses enregistrées avec succès !");
+//    }
+//
+    @PostMapping("/{idEvaluation}/questions")
+    public ResponseEntity<Evaluation> addQuestionsToEvaluation(@PathVariable Long idEvaluation, @RequestBody Set<Long> quesIds)
+    {
+
+        Evaluation evaluation = evaluationService.addQuestionsToEvaluation(idEvaluation, quesIds);
+        return ResponseEntity.ok(evaluation);
     }
 }
