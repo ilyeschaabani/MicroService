@@ -17,8 +17,8 @@ public class GatewayApplication {
     @Bean
     public RouteLocator gatewayRoutes(RouteLocatorBuilder builder){
         return builder.routes()
-                .route("Authentification-MicroService",r->r.path("/Authentification-MicroService/**")
-                        .uri("lb://Authentification-MicroService") )
+                .route("RessourceMicroService",r->r.path("/api/ressources/**")
+                        .uri("lb://RESSOURCEMICROSERVICE") )
                 .build();
     }
 
