@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f029258b-89b1-4d69-b5bf-45429790295f" name="Changes" comment="" />
+    <list default="true" id="f029258b-89b1-4d69-b5bf-45429790295f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/EurekaServer/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Gateway/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,6 +67,8 @@
       <workItem from="1741641672622" duration="1070000" />
       <workItem from="1743935093280" duration="15000" />
       <workItem from="1744034092226" duration="83000" />
+      <workItem from="1744045934106" duration="9000" />
+      <workItem from="1744045952187" duration="15000" />
     </task>
     <servers />
   </component>
