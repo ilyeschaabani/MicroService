@@ -30,6 +30,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable()) // Disable CSRF for stateless APIs
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("AuthenticationMicroService/**").permitAll()
                         .requestMatchers("api/auth/**").permitAll() // Allow access to /auth/** without authentication
                         .requestMatchers("/h2-console/**").permitAll() // Allow access to H2 console
                         .requestMatchers("/api/Admin/**").hasAnyAuthority("ADMIN")

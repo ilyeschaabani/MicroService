@@ -15,10 +15,12 @@ public class GatewayApplication {
         SpringApplication.run(GatewayApplication.class, args);
     }
     @Bean
-    public RouteLocator gatewayRoutes(RouteLocatorBuilder builder){
+    public RouteLocator gatewayRoutes(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route("Authentification-MicroService",r->r.path("/Authentification-MicroService/**")
-                        .uri("lb://Authentification-MicroService") )
+                .route("AuthenticationMicroService", r -> r.path("/AuthenticationMicroService/**")
+                        .filters(f -> f.stripPrefix(1)) // Removes '/AuthenticationMicroService' before forwarding
+                        .uri("lb://AUTHENTICATIONMICROSERVICE"))
+
                 .build();
     }
 
