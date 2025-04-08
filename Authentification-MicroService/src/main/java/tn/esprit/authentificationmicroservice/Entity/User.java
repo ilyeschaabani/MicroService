@@ -45,6 +45,8 @@ public class User implements UserDetails {
 
     @NotBlank
     String adresse;
+    @OneToOne (mappedBy = "user")
+    ForgotPassword forgotPassword;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
