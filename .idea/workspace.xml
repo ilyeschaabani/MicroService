@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f029258b-89b1-4d69-b5bf-45429790295f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/RessourceMicroService/src/main/java/com/example/ressourcemicroservice/Controller/DownloadFileController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RessourceMicroService/src/main/java/com/example/ressourcemicroservice/Controller/FileUploadController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RessourceMicroService/src/main/java/com/example/ressourcemicroservice/Service/FileStorageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="f029258b-89b1-4d69-b5bf-45429790295f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,7 +28,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "AMIRA'S-BRANCH",
-    "last_opened_file_path": "C:/Users/DELL/Downloads/Pidev-AMIRA-S-BRANCH (1)",
+    "last_opened_file_path": "C:/Users/DELL/Documents/GitHub/MicroService",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -75,6 +70,7 @@
       <workItem from="1744046223704" duration="31000" />
       <workItem from="1744046340612" duration="14000" />
       <workItem from="1744046467110" duration="1214000" />
+      <workItem from="1744101923787" duration="43000" />
     </task>
     <servers />
   </component>

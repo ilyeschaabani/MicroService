@@ -19,6 +19,10 @@ public class GatewayApplication {
         return builder.routes()
                 .route("RessourceMicroService",r->r.path("/api/ressources/**")
                         .uri("lb://RESSOURCEMICROSERVICE") )
+                .route("RessourceMicroService",r->r.path("/api/download/**")
+                        .uri("lb://RESSOURCEMICROSERVICE") )
+                .route("RessourceMicroService",r->r.path("/api/upload/**")
+                        .uri("lb://RESSOURCEMICROSERVICE") )
                 .build();
     }
 

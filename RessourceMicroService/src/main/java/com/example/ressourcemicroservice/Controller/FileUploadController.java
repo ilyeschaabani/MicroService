@@ -20,7 +20,7 @@ import java.util.Map;
     public FileUploadController(FileStorageService fileStorageService) {
         this.fileStorageService = fileStorageService;
     }
-    // Upload d'un fichier avec catégorisation
+    // Upload d'un fichier avec catégorisation      *
     @PostMapping("/{typeRessource}")
     public ResponseEntity<?> uploadResource(@PathVariable TypeRessource typeRessource, @RequestParam("file") MultipartFile file) throws IOException {
         // Convert fileType string to enum (handling case sensitivity)

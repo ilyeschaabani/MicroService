@@ -6,6 +6,7 @@ package com.example.ressourcemicroservice.Controller;
         import org.springframework.http.ResponseEntity;
         import org.springframework.web.bind.annotation.GetMapping;
         import org.springframework.web.bind.annotation.PathVariable;
+        import org.springframework.web.bind.annotation.RequestMapping;
         import org.springframework.web.bind.annotation.RestController;
 
         import java.io.IOException;
@@ -14,8 +15,9 @@ package com.example.ressourcemicroservice.Controller;
         import java.nio.file.Paths;
 
 @RestController
+@RequestMapping("/api/download")
 public class DownloadFileController {
-    @GetMapping("/api/download/{type}/{fileName}")
+    @GetMapping("/{type}/{fileName}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String type, @PathVariable String fileName) throws IOException {
         System.out.println("im in download file ");
         // Chemin du dossier "uploads" dans le projet
