@@ -4,7 +4,8 @@ import com.example.accompagnementpfemicroservice.Entity.AccompagnementPFE;
 import com.example.accompagnementpfemicroservice.Repository.AccompagnementPFEReposiroty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,4 +45,39 @@ public class AccompagnementPFEService {
     public void deleteAccompagnement(Long id) { // Changed to Long
         repository.deleteById(id);
     }
+// Recherche par nom d'étudiant
+    public List<AccompagnementPFE> findByEtudiant(String etudiant) {
+        return repository.findByEtudiantContainingIgnoreCase(etudiant);
+    }
+
+    public List<AccompagnementPFE> findByAvancementGreaterThan(Float threshold) {
+        return repository.findByAvancementGreaterThan(threshold);
+    }
+
+    public long countAll() {
+        return repository.count();
+    }
+
+    public String exportAccompagnementsToCSV() {
+        List<AccompagnementPFE> accompagnements = repository.findAll();
+        StringWriter writer = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(writer);
+
+        // Header
+        printWriter.println("ID,Etudiant,Encadrant,Sujet,Avancement");
+
+        // Rows
+        for (AccompagnementPFE a : accompagnements) {
+            printWriter.printf("%d,%s,%s,%s,%.2f%n",
+                    a.getIdAccompagnement(),
+                    a.getEtudiant(),
+                    a.getEncadrant(),
+                    a.getSujet(),
+                    a.getAvancement()
+            );
+        }
+
+        return writer.toString();
+    }
+
 }
