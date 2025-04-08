@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f029258b-89b1-4d69-b5bf-45429790295f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/EurekaServer/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Gateway/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RessourceMicroService/src/main/java/com/example/ressourcemicroservice/Controller/DownloadFileController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RessourceMicroService/src/main/java/com/example/ressourcemicroservice/Controller/FileUploadController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RessourceMicroService/src/main/java/com/example/ressourcemicroservice/Service/FileStorageService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,20 +27,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;AMIRA'S-BRANCH&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/DELL/Documents/GitHub/MicroService&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "AMIRA'S-BRANCH",
+    "last_opened_file_path": "C:/Users/DELL/Downloads/Pidev-AMIRA-S-BRANCH (1)",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="MicroService" />
@@ -69,6 +70,11 @@
       <workItem from="1744034092226" duration="83000" />
       <workItem from="1744045934106" duration="9000" />
       <workItem from="1744045952187" duration="15000" />
+      <workItem from="1744046171860" duration="8000" />
+      <workItem from="1744046189468" duration="23000" />
+      <workItem from="1744046223704" duration="31000" />
+      <workItem from="1744046340612" duration="14000" />
+      <workItem from="1744046467110" duration="1214000" />
     </task>
     <servers />
   </component>
