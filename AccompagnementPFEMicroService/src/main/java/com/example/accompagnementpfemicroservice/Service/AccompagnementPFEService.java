@@ -17,6 +17,13 @@ public class AccompagnementPFEService {
 
     // Ajouter un nouvel accompagnement
     public AccompagnementPFE createAccompagnement(AccompagnementPFE accompagnement) {
+        // Simuler l'attribution automatique d'un encadrant
+        if (accompagnement.getEncadrant() == null || accompagnement.getEncadrant().isEmpty()) {
+            accompagnement.setEncadrant(assignEncadrant(accompagnement));
+        }
+
+        accompagnement.setNotificationEnvoyee(true); // simulate notification logic
+
         return repository.save(accompagnement);
     }
 
@@ -64,20 +71,39 @@ public class AccompagnementPFEService {
         PrintWriter printWriter = new PrintWriter(writer);
 
         // Header
-        printWriter.println("ID,Etudiant,Encadrant,Sujet,Avancement");
+        printWriter.println("ID,Etudiant,Encadrant,Sujet,Avancement,Spécialité,Compétences,Niveau,Notification");
 
-        // Rows
         for (AccompagnementPFE a : accompagnements) {
-            printWriter.printf("%d,%s,%s,%s,%.2f%n",
+            printWriter.printf("%d,%s,%s,%s,%.2f,%s,%s,%s,%s%n",
                     a.getIdAccompagnement(),
                     a.getEtudiant(),
                     a.getEncadrant(),
                     a.getSujet(),
-                    a.getAvancement()
+                    a.getAvancement(),
+                    a.getSpecialite(),
+                    a.getCompetences(),
+                    a.getNiveau(),
+                    a.getNotificationEnvoyee() != null ? a.getNotificationEnvoyee().toString() : "false"
             );
         }
 
         return writer.toString();
     }
+
+
+
+    // Méthode fictive pour assigner un encadrant automatiquement
+    private String assignEncadrant(AccompagnementPFE accompagnement) {
+        // Logique simple basée sur la spécialité (exemple)
+        switch (accompagnement.getSpecialite().toLowerCase()) {
+            case "informatique":
+                return "Dr. Yassine";
+            case "telecom":
+                return "Mme. Fethi";
+            default:
+                return "Encadrant Générique";
+        }
+    }
+
 
 }

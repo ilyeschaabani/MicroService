@@ -12,11 +12,12 @@ import org.springframework.http.ResponseEntity;
 import java.nio.charset.StandardCharsets;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+@CrossOrigin(origins = "http://localhost:4200")  // Ajout dans le contrôleur
 
 @RestController
 @RequestMapping("/api/accompagnement")
-@CrossOrigin(origins = "*") // Autoriser les requêtes cross-origin
 public class AccompagnementPFEController {
 
     @Autowired
@@ -24,9 +25,14 @@ public class AccompagnementPFEController {
 
     // Créer un accompagnement
     @PostMapping
-    public AccompagnementPFE createAccompagnement(@RequestBody AccompagnementPFE accompagnement) {
-        return service.createAccompagnement(accompagnement);
+    public ResponseEntity<?> createAccompagnement(@RequestBody AccompagnementPFE accompagnement) {
+        AccompagnementPFE created = service.createAccompagnement(accompagnement);
+        return ResponseEntity.ok().body(Map.of(
+                "message", "Encadrant assigné automatiquement : " + created.getEncadrant(),
+                "data", created
+        ));
     }
+
 
     // Récupérer tous les accompagnements
     @GetMapping("/all")

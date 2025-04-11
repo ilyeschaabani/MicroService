@@ -1,41 +1,70 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Accompagnement } from '../models/accompagnement.model';
+
+export interface AccompagnementPFE {
+  idAccompagnement?: number;
+  etudiant: string;
+  encadrant?: string;
+  sujet: string;
+  avancement?: number;
+  specialite: string;
+  competences: string;
+  niveau: string;
+  notificationEnvoyee?: boolean;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccompagnementService {
-  private apiUrl = 'http://localhost:8082/api/accompagnement';
+  private apiUrl = 'http://localhost:9093/api/accompagnement';
 
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable<Accompagnement[]> {
-    return this.http.get<Accompagnement[]>(`${this.apiUrl}/all`);
+  // Create a new Accompagnement
+  createAccompagnement(data: AccompagnementPFE): Observable<any> {
+    return this.http.post(this.apiUrl, data);
   }
 
-  create(accompagnement: Accompagnement): Observable<Accompagnement> {
-    return this.http.post<Accompagnement>(this.apiUrl, accompagnement);
+  // Get all Accompagnements
+  getAllAccompagnements(): Observable<AccompagnementPFE[]> {
+    return this.http.get<AccompagnementPFE[]>(`${this.apiUrl}/all`);
   }
 
-  update(id: number, accompagnement: Accompagnement): Observable<Accompagnement> {
-    return this.http.put<Accompagnement>(`${this.apiUrl}/${id}`, accompagnement);
+  // Get Accompagnement by ID
+  getAccompagnementById(id: number): Observable<AccompagnementPFE> {
+    return this.http.get<AccompagnementPFE>(`${this.apiUrl}/${id}`);
   }
 
-  delete(id: number): Observable<void> {
+  // Update Accompagnement
+  updateAccompagnement(id: number, data: AccompagnementPFE): Observable<AccompagnementPFE> {
+    return this.http.put<AccompagnementPFE>(`${this.apiUrl}/${id}`, data);
+  }
+
+  // Delete an Accompagnement by ID
+  deleteAccompagnement(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
-  searchByEtudiant(name: string): Observable<Accompagnement[]> {
-    return this.http.get<Accompagnement[]>(`${this.apiUrl}/etudiant/${name}`);
+  // Search Accompagnements by student name
+  getByEtudiant(name: string): Observable<AccompagnementPFE[]> {
+    return this.http.get<AccompagnementPFE[]>(`${this.apiUrl}/etudiant/${name}`);
   }
 
-  searchByAvancement(value: number): Observable<Accompagnement[]> {
-    return this.http.get<Accompagnement[]>(`${this.apiUrl}/avancement/superieur/${value}`);
+  // Filter Accompagnements by advancement greater than a threshold
+  getByAvancementGreater(value: number): Observable<AccompagnementPFE[]> {
+    return this.http.get<AccompagnementPFE[]>(`${this.apiUrl}/avancement/superieur/${value}`);
   }
 
-  count(): Observable<number> {
+  // Count total Accompagnements
+  countAccompagnements(): Observable<number> {
     return this.http.get<number>(`${this.apiUrl}/count`);
   }
+
+  // Export Accompagnements to CSV
+  exportCSV(): Observable<Blob> {
+    return this.http.get(`${this.apiUrl}/export/csv`, { responseType: 'blob' });
+  }
 }
+ 
