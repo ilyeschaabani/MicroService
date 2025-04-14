@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+
+  eureka:
+    image: myorg/eureka:1.0
+    container_name: eureka
+    build: ./EurekaServer
+    ports:
+      - "8761:8761"
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: FormationDB
+    restart: unless-stopped
+
+  formationms:
+    image: myorg/formationms:1.0
+    container_name: formationms
+    build: ./FormationMS
+    ports:
+      - "8060:8060"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/FormationDB?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:8761/eureka
+    depends_on:
+      - mysql
+      - eureka

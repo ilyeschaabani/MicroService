@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3efaaeab-2245-48b9-803d-267370dbe0ab" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/PanierMS/src/main/java/tn/esprit/microservice/panierms/FormationClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PanierMS/src/main/java/tn/esprit/microservice/panierms/FormationDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PanierMS/src/main/java/tn/esprit/microservice/panierms/Panier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PanierMS/src/main/java/tn/esprit/microservice/panierms/PanierController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PanierMS/src/main/java/tn/esprit/microservice/panierms/PanierRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PanierMS/src/main/java/tn/esprit/microservice/panierms/PanierService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FormationMS/src/main/java/tn/esprit/microservice/formationms/Formation.java" beforeDir="false" afterPath="$PROJECT_DIR$/FormationMS/src/main/java/tn/esprit/microservice/formationms/Formation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FormationMS/src/main/java/tn/esprit/microservice/formationms/FormationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/FormationMS/src/main/java/tn/esprit/microservice/formationms/FormationService.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Zarrouk18"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/ilyeschaabani/MicroService.git",
+    "accountId": "8f6ad0c2-0bf4-4c29-8519-b6f452a34a61"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="2taboXJwlaK91q8mubUQFDswn50" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "AZIZ'S-BRANCHE",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/zarro/MicroService",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="AuthentificationMicroServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="Authentification-MicroService" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.authentificationmicroservice.AuthentificationMicroServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3efaaeab-2245-48b9-803d-267370dbe0ab" name="Changes" comment="" />
+      <created>1740593307655</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1740593307655</updated>
+      <workItem from="1740593308711" duration="88000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

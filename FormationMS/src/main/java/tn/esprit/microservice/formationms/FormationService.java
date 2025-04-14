@@ -34,6 +34,7 @@ public class FormationService {
                     existingFormation.setDateFin(newFormation.getDateFin());
                     existingFormation.setCategorie(newFormation.getCategorie());
                     existingFormation.setRating(newFormation.getRating());
+                    existingFormation.setPrix(newFormation.getPrix());
                     return formationRepository.save(existingFormation);
                 })
                 .orElseThrow(() -> new RuntimeException("Formation non trouvée avec l'ID : " + id));

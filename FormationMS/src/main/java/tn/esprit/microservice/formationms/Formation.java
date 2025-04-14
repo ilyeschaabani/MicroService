@@ -26,6 +26,7 @@ public class Formation {
     Date dateFin;
     CategoryResource categorie;
     double rating;
+    double prix;
 
       /*
     @OneToOne
