@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f029258b-89b1-4d69-b5bf-45429790295f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RessourceMicroService/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/RessourceMicroService/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RessourceMicroService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/RessourceMicroService/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RessourceMicroService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/RessourceMicroService/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -19,48 +18,28 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 7
-}</component>
-  <component name="ProjectId" id="2u8sRVX0bdTxvoDfgwUWecaOWIz" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 3
+}]]></component>
+  <component name="ProjectId" id="2vjm3KyCynoOXcN8kAc6lgAyx54" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/DELL/Documents/GitHub/MicroService&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager">
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="MicroService" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="MicroService" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -73,24 +52,11 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="f029258b-89b1-4d69-b5bf-45429790295f" name="Changes" comment="" />
-      <created>1741641528123</created>
+      <created>1744666658702</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1741641528123</updated>
-      <workItem from="1741641529226" duration="104000" />
-      <workItem from="1741641672622" duration="1070000" />
-      <workItem from="1743935093280" duration="15000" />
-      <workItem from="1744034092226" duration="83000" />
-      <workItem from="1744045934106" duration="9000" />
-      <workItem from="1744045952187" duration="15000" />
-      <workItem from="1744046171860" duration="8000" />
-      <workItem from="1744046189468" duration="23000" />
-      <workItem from="1744046223704" duration="31000" />
-      <workItem from="1744046340612" duration="14000" />
-      <workItem from="1744046467110" duration="1214000" />
-      <workItem from="1744101923787" duration="43000" />
-      <workItem from="1744632317427" duration="9755000" />
-      <workItem from="1744644709065" duration="7706000" />
+      <updated>1744666658702</updated>
+      <workItem from="1744666660154" duration="1067000" />
     </task>
     <servers />
   </component>

@@ -13,6 +13,26 @@ services:
       - eureka-server
       - gateway
 
+
+
+
+  microserviceevaluation:
+    image: myorg/microserviceevaluation:1.0
+    container_name: microserviceevaluation
+    build: ./MicroserviceEvaluation
+    ports:
+      - "8095:8095"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/microdb?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
+    depends_on:
+      - mysql
+      - eureka-server
+    networks:
+      - pi-network
+
   formationms:
     image: myorg/formationms:1.0
     container_name: formationms
