@@ -6,6 +6,7 @@ import { FooterComponent } from './footer/footer.component';
 import { AccompagnementListComponent } from './components/accompagnement-list/accompagnement-list.component';
 import { AccompagnementTableComponent } from './components/accompagnement-table/accompagnement-table.component';
 import { AccompagnementPfeDetailsComponent } from './components/accompagnement-pfe-details/accompagnement-pfe-details.component';
+import { AccompagnementEncadrantComponent } from './components/accompagnement-encadrant/accompagnement-encadrant.component';
 const routes: Routes = [
   {path: '', component:HomeComponent}, // Route pour les détails du projet
   {path: 'navbar', component: NavbarComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'accompagnement', component: AccompagnementListComponent },
   { path: 'accompagnements', component: AccompagnementTableComponent },
   { path: 'accompagnement-details', component: AccompagnementPfeDetailsComponent },
+  { path: 'accompagnement-encadrant', component: AccompagnementEncadrantComponent },
 
 
 ];

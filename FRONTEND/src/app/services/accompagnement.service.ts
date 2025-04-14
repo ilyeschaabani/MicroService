@@ -12,6 +12,8 @@ export interface AccompagnementPFE {
   competences: string;
   niveau: string;
   notificationEnvoyee?: boolean;
+  sujetValide?: string; // Ajouter cette ligne
+
 }
 
 @Injectable({
@@ -64,7 +66,13 @@ export class AccompagnementService {
 
   // Export Accompagnements to CSV
   exportCSV(): Observable<Blob> {
-    return this.http.get(`${this.apiUrl}/export/csv`, { responseType: 'blob' });
+    return this.http.get(`${this.apiUrl}/export/csv`, {
+      responseType: 'blob'
+    });
+  }
+  
+  getDistinctValues(): Observable<{ specialites: string[], niveaux: string[] }> {
+    return this.http.get<{ specialites: string[], niveaux: string[] }>(`${this.apiUrl}/metadata`);
   }
 }
  

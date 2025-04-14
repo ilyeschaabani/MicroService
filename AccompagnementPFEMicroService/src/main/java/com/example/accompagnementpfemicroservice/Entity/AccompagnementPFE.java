@@ -23,6 +23,7 @@ public class AccompagnementPFE {
     String encadrant;
     String sujet;
     Float avancement;
+    private Boolean sujetValide = false;
 
     // ✅ Champs supplémentaires pour le formulaire étudiant
     String specialite;

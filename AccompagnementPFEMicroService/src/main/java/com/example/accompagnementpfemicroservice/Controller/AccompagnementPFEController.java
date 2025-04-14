@@ -9,6 +9,9 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 import java.util.List;
@@ -85,4 +88,27 @@ public class AccompagnementPFEController {
                 .contentLength(resource.contentLength())
                 .body(resource);
     }
+
+    // Route pour uploader un fichier
+    @PostMapping("/upload")
+    public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
+        try {
+            String fileName = service.uploadFile(file);
+            return ResponseEntity.ok("Fichier téléchargé avec succès : " + fileName);
+        } catch (IOException e) {
+            return ResponseEntity.status(500).body("Erreur lors du téléchargement du fichier");
+        }
+    }
+
+    // Route pour télécharger un fichier
+    @GetMapping("/download/{fileName}")
+    public ResponseEntity<Resource> downloadFile(@PathVariable String fileName) {
+        Resource resource = service.downloadFile(fileName);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileName + "\"")
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .body(resource);
+    }
+
+
 }

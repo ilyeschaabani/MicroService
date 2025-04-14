@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AccompagnementListComponent } from './components/accompagnement-list/accompagnement-list.component';
 import { AccompagnementTableComponent } from './components/accompagnement-table/accompagnement-table.component';
 import { AccompagnementPfeDetailsComponent } from './components/accompagnement-pfe-details/accompagnement-pfe-details.component';
+import { AccompagnementEncadrantComponent } from './components/accompagnement-encadrant/accompagnement-encadrant.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { AccompagnementPfeDetailsComponent } from './components/accompagnement-p
     AccompagnementListComponent,
     AccompagnementTableComponent,
     AccompagnementPfeDetailsComponent,
+    AccompagnementEncadrantComponent,
 
   ],
   imports: [

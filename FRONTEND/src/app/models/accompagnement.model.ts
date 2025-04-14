@@ -4,5 +4,6 @@ export interface Accompagnement {
     encadrant: string;
     sujet: string;
     avancement: number;
+    sujetValide?: string; // Ajouter cette ligne
   }
   

@@ -29,6 +29,8 @@
 		<properties>
 			<java.version>17</java.version>
 			<spring-cloud.version>2024.0.0</spring-cloud.version>
+			<google.cloud.ai.version>3.11.0</google.cloud.ai.version>
+
 		</properties>
 		<dependencies>
 			<dependency>
@@ -86,7 +88,9 @@
 				<scope>provided</scope>
 			</dependency>
 		</dependencies>
-		<dependencyManagement>
+
+
+	<dependencyManagement>
 			<dependencies>
 				<dependency>
 					<groupId>org.springframework.cloud</groupId>

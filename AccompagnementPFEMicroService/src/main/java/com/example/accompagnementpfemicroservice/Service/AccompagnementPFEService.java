@@ -3,15 +3,24 @@ package com.example.accompagnementpfemicroservice.Service;
 import com.example.accompagnementpfemicroservice.Entity.AccompagnementPFE;
 import com.example.accompagnementpfemicroservice.Repository.AccompagnementPFEReposiroty;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
 public class AccompagnementPFEService {
-
+    @Value("${file.upload-dir}")
+    private String uploadDir;
     @Autowired
     private AccompagnementPFEReposiroty repository;
 
@@ -42,6 +51,7 @@ public class AccompagnementPFEService {
         return repository.findById(id).map(accompagnement -> {
             accompagnement.setEtudiant(updatedAccompagnement.getEtudiant());
             accompagnement.setEncadrant(updatedAccompagnement.getEncadrant());
+            accompagnement.setSujetValide(updatedAccompagnement.getSujetValide());
             accompagnement.setSujet(updatedAccompagnement.getSujet());
             accompagnement.setAvancement(updatedAccompagnement.getAvancement());
             return repository.save(accompagnement);
@@ -103,6 +113,29 @@ public class AccompagnementPFEService {
             default:
                 return "Encadrant Générique";
         }
+    }
+    // Méthode pour télécharger un fichier
+    public String uploadFile(MultipartFile file) throws IOException {
+        // Créer le répertoire si nécessaire
+        File dir = new File(uploadDir);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+
+        // Nom du fichier
+        String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+        File destination = new File(uploadDir + File.separator + fileName);
+
+        // Enregistrer le fichier
+        file.transferTo(destination);
+
+        return fileName;
+    }
+
+    // Méthode pour télécharger un fichier
+    public Resource downloadFile(String fileName) {
+        File file = new File(uploadDir + File.separator + fileName);
+        return new FileSystemResource(file);
     }
 
 
