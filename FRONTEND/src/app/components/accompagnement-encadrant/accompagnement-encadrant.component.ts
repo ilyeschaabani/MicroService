@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AccompagnementService, AccompagnementPFE } from 'src/app/services/accompagnement.service';
 import { Router } from '@angular/router';
 import * as bootstrap from 'bootstrap';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-accompagnement-encadrant',
@@ -37,13 +38,18 @@ export class AccompagnementEncadrantComponent implements OnInit {
   };
   files: { id: number, name: string }[] = [];  // List of files for download
   selectedFile: File | null = null;
+  accompagnement: any;
 
-  constructor(private accompagnementService: AccompagnementService, private router: Router) {}
+  constructor(private accompagnementService: AccompagnementService, private router: Router,private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.loadAccompagnements();
     this.loadTotalCount();
     this.loadMetadata(); // Important
+    this.route.paramMap.subscribe(params => {
+      const data = history.state.data; // Récupère les données passées lors de la navigation
+      this.accompagnement = data;
+    });
   }
 
   loadTotalCount(): void {
@@ -157,11 +163,13 @@ export class AccompagnementEncadrantComponent implements OnInit {
     });
   }
 
+  // Ouvrir les détails du produit
   openDetails(accompagnement: AccompagnementPFE): void {
-    this.selectedAccompagnement = accompagnement;
+    this.selectedAccompagnement = accompagnement; // Sauvegarde du produit sélectionné
+    // Utilisation de Router pour naviguer vers la page des détails du produit
     this.router.navigate(['/accompagnement-details'], { state: { data: accompagnement } });
   }
-
+  
   confirmDelete(id: number): void {
     this.selectedAccompagnement = this.accompagnements.find(acomp => acomp.idAccompagnement === id) || null;
     if (this.selectedAccompagnement) {

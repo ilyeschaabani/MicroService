@@ -10,12 +10,23 @@
               <i class="bx bx-plus icon-sm"></i> 
               <span class="d-none d-sm-inline-block">Ajouter Accompagnement</span>
             </button>
+            
           </div>
+               <!-- Add the button to navigate to the Collaborative Space -->
+<div class="col-md-4 text-end">
+  <button class="btn btn-info" [routerLink]="['/file-manager']">
+    <i class="bx bx-folder"></i> Espace Collaboratif
+  </button>
+</div>
+
+
   
           <h4 class="text-center text-primary mb-3">Liste des Accompagnements PFE</h4>
   
           <div class="table-responsive">
+            
             <table class="table table-hover table-bordered">
+              
               <thead class="table-dark text-center">
                 <tr>
                   <th>Étudiant</th>

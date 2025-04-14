@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'accompagnement-details', component: AccompagnementPfeDetailsComponent },
   { path: 'accompagnement-encadrant', component: AccompagnementEncadrantComponent },
   { path: 'files', component: FileManagerComponent },
+  { path: 'file-manager', component: FileManagerComponent }, // Add this route
 
 
 ];

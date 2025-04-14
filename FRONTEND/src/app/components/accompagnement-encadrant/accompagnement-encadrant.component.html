@@ -29,7 +29,13 @@
       </div>
     </div>
     
-   
+   <!-- Add the button to navigate to the Collaborative Space -->
+<div class="col-md-4 text-end">
+    <button class="btn btn-info" [routerLink]="['/file-manager']">
+      <i class="bx bx-folder"></i> Espace Collaboratif
+    </button>
+  </div>
+  
 
     <div class="col-md-4 text-end">
         <button class="btn btn-success" (click)="exportCSV()">
@@ -76,14 +82,16 @@
         {{ acomp.avancement | number:'1.0-2' }}%
       </div>
     </div>
-  </td>          <td>
-    <a [routerLink]="['/accompagnement-details']" 
-    [state]="{ data: acomp }" 
-    class="btn btn-sm btn-outline-info"
-    title="Détails">
-   <i class="ri-eye-line"></i>
- </a>
- 
+  </td>        
+    <td>
+     <div class="d-flex align-items-center justify-content-center">
+            <!-- Détails -->
+            <a href="javascript:;" class="btn btn-sm btn-icon btn-text-secondary rounded-pill" 
+              data-bs-toggle="tooltip" title="Détails" 
+              (click)="openDetails(acomp)">
+              <i class="ri-eye-line ri-22px"></i>
+            </a>
+          </div>
           </td>
         </tr>
       </tbody>
