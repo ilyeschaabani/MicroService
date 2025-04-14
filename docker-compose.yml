@@ -13,6 +13,23 @@ services:
       - eureka-server
       - gateway
 
+  formationms:
+    image: myorg/formationms:1.0
+    container_name: formationms
+    build: ./FormationMS
+    ports:
+      - "8060:8060"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/FormationDB?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
+    depends_on:
+      - mysql
+      - eureka-server
+    networks:
+      - pi-network
+
   ressource-service:
     container_name: resource-service
     build:
