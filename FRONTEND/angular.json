@@ -29,7 +29,8 @@
               "src/assets/css/demo.css",
               "src/assets/vendor/css/core.css",
               "src/assets/vendor/css/pages/front-page.css",
-              "src/assets/vendor/css/pages/front-page-landing.css"
+              "src/assets/vendor/css/pages/front-page-landing.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

@@ -11,6 +11,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgChartsModule } from 'ng2-charts';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AccompagnementListComponent } from './components/accompagnement-list/accompagnement-list.component';
+import { AccompagnementTableComponent } from './components/accompagnement-table/accompagnement-table.component';
+import { AccompagnementPfeDetailsComponent } from './components/accompagnement-pfe-details/accompagnement-pfe-details.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { AccompagnementListComponent } from './components/accompagnement-list/ac
     NavbarComponent,
     FooterComponent,
     AccompagnementListComponent,
+    AccompagnementTableComponent,
+    AccompagnementPfeDetailsComponent,
 
   ],
   imports: [

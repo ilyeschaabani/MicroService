@@ -37,10 +37,10 @@ export class AccompagnementService {
     return this.http.get<AccompagnementPFE>(`${this.apiUrl}/${id}`);
   }
 
-  // Update Accompagnement
-  updateAccompagnement(id: number, data: AccompagnementPFE): Observable<AccompagnementPFE> {
-    return this.http.put<AccompagnementPFE>(`${this.apiUrl}/${id}`, data);
+  updateAccompagnement(accompagnement: AccompagnementPFE) {
+    return this.http.put(`${this.apiUrl}/${accompagnement.idAccompagnement}`, accompagnement);
   }
+  
 
   // Delete an Accompagnement by ID
   deleteAccompagnement(id: number): Observable<void> {

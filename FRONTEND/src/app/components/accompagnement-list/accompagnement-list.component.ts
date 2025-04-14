@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Accompagnement } from 'src/app/models/accompagnement.model';
+import { Router } from '@angular/router';
 import { AccompagnementService, AccompagnementPFE } from 'src/app/services/accompagnement.service';
-import * as bootstrap from 'bootstrap'; // nécessaire pour utiliser la modal Bootstrap
+import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-accompagnement-list',
@@ -20,7 +20,10 @@ export class AccompagnementListComponent {
   responseMessage: string = '';
   assignedEncadrant: string = '';
 
-  constructor(private accompagnementService: AccompagnementService) {}
+  constructor(
+    private accompagnementService: AccompagnementService,
+    private router: Router
+  ) {}
 
   submitForm() {
     this.accompagnementService.createAccompagnement(this.accompagnement).subscribe({
@@ -39,7 +42,7 @@ export class AccompagnementListComponent {
         this.responseMessage = 'Erreur lors de la soumission.';
         console.error(err);
 
-        // Affichage d’une erreur dans la même modal
+        // Affichage de l’erreur dans la même modal
         const modalElement = document.getElementById('responseModal');
         if (modalElement) {
           const modal = new bootstrap.Modal(modalElement);
@@ -47,5 +50,17 @@ export class AccompagnementListComponent {
         }
       }
     });
+  }
+
+  // Méthode appelée lors du clic sur le bouton "Fermer" de la modal
+  closeModalAndRedirect() {
+    const modalElement = document.getElementById('responseModal');
+    if (modalElement) {
+      const modal = bootstrap.Modal.getInstance(modalElement);
+      modal?.hide();
+    }
+
+    // Redirection vers la page de liste des accompagnements
+    this.router.navigate(['/accompagnements']);
   }
 }
