@@ -116,8 +116,7 @@ public class AccompagnementPFEController {
     }
 
     @GetMapping("/files")
-    public ResponseEntity<List<String>> listFiles() {
-        // Utiliser le service pour récupérer le répertoire de téléchargement
+    public ResponseEntity<List<Map<String, Object>>> listFiles() {
         File dir = new File(service.getUploadDir());
         if (!dir.exists() || !dir.isDirectory()) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.emptyList());
@@ -126,7 +125,18 @@ public class AccompagnementPFEController {
         // Liste tous les fichiers dans le répertoire
         String[] files = dir.list((directory, fileName) -> new File(directory, fileName).isFile());
         if (files != null) {
-            return ResponseEntity.ok(Arrays.asList(files)); // Retourne les noms des fichiers dans le répertoire
+            List<Map<String, Object>> fileDetails = new ArrayList<>();
+
+            for (String fileName : files) {
+                File file = new File(dir, fileName);
+                Map<String, Object> fileInfo = new HashMap<>();
+                fileInfo.put("fileName", fileName);
+                fileInfo.put("fileType", "application/octet-stream"); // Ou utiliser une logique pour détecter le type de fichier
+                fileInfo.put("uploadDate", new Date(file.lastModified()));
+                fileDetails.add(fileInfo);
+            }
+
+            return ResponseEntity.ok(fileDetails); // Retourne les informations détaillées des fichiers
         } else {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.emptyList());
         }
