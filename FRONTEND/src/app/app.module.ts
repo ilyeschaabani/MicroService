@@ -14,6 +14,7 @@ import { AccompagnementListComponent } from './components/accompagnement-list/ac
 import { AccompagnementTableComponent } from './components/accompagnement-table/accompagnement-table.component';
 import { AccompagnementPfeDetailsComponent } from './components/accompagnement-pfe-details/accompagnement-pfe-details.component';
 import { AccompagnementEncadrantComponent } from './components/accompagnement-encadrant/accompagnement-encadrant.component';
+import { FileManagerComponent } from './components/file-manager/file-manager.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AccompagnementEncadrantComponent } from './components/accompagnement-en
     AccompagnementTableComponent,
     AccompagnementPfeDetailsComponent,
     AccompagnementEncadrantComponent,
+    FileManagerComponent,
 
   ],
   imports: [
