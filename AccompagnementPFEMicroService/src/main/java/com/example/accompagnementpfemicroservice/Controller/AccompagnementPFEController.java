@@ -3,6 +3,7 @@ package com.example.accompagnementpfemicroservice.Controller;
 import com.example.accompagnementpfemicroservice.Entity.AccompagnementPFE;
 import com.example.accompagnementpfemicroservice.Service.AccompagnementPFEService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
@@ -11,12 +12,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+
 @CrossOrigin(origins = "http://localhost:4200")  // Ajout dans le contrôleur
 
 @RestController
@@ -113,5 +114,23 @@ public class AccompagnementPFEController {
             return ResponseEntity.status(500).body(null);
         }
     }
+
+    @GetMapping("/files")
+    public ResponseEntity<List<String>> listFiles() {
+        // Utiliser le service pour récupérer le répertoire de téléchargement
+        File dir = new File(service.getUploadDir());
+        if (!dir.exists() || !dir.isDirectory()) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.emptyList());
+        }
+
+        // Liste tous les fichiers dans le répertoire
+        String[] files = dir.list((directory, fileName) -> new File(directory, fileName).isFile());
+        if (files != null) {
+            return ResponseEntity.ok(Arrays.asList(files)); // Retourne les noms des fichiers dans le répertoire
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.emptyList());
+        }
+    }
+
 }
 

@@ -135,6 +135,9 @@ public class AccompagnementPFEService {
         }
         return new FileSystemResource(file);
     }
+    public String getUploadDir() {
+        return uploadDir;
+    }
 
 
 }
