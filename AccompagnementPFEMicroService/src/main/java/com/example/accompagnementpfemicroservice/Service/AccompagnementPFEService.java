@@ -13,6 +13,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -114,27 +117,22 @@ public class AccompagnementPFEService {
                 return "Encadrant Générique";
         }
     }
-    // Méthode pour télécharger un fichier
-    public String uploadFile(MultipartFile file) throws IOException {
-        // Créer le répertoire si nécessaire
+    public void saveFile(MultipartFile file) throws IOException {
         File dir = new File(uploadDir);
-        if (!dir.exists()) {
-            dir.mkdirs();
+        if (!dir.exists() && !dir.mkdirs()) {
+            throw new IOException("Impossible de créer le répertoire : " + uploadDir);
         }
 
-        // Nom du fichier
         String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
-        File destination = new File(uploadDir + File.separator + fileName);
-
-        // Enregistrer le fichier
-        file.transferTo(destination);
-
-        return fileName;
+        Path path = Paths.get(uploadDir, fileName);
+        Files.copy(file.getInputStream(), path);
     }
 
-    // Méthode pour télécharger un fichier
     public Resource downloadFile(String fileName) {
-        File file = new File(uploadDir + File.separator + fileName);
+        File file = new File(uploadDir, fileName);
+        if (!file.exists()) {
+            throw new RuntimeException("Fichier introuvable : " + fileName);
+        }
         return new FileSystemResource(file);
     }
 

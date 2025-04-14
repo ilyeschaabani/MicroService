@@ -90,25 +90,28 @@ public class AccompagnementPFEController {
     }
 
     // Route pour uploader un fichier
+
     @PostMapping("/upload")
-    public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file) {
         try {
-            String fileName = service.uploadFile(file);
-            return ResponseEntity.ok("Fichier téléchargé avec succès : " + fileName);
+            service.saveFile(file);
+            return ResponseEntity.ok("Fichier uploadé avec succès !");
         } catch (IOException e) {
-            return ResponseEntity.status(500).body("Erreur lors du téléchargement du fichier");
+            return ResponseEntity.status(500).body("Erreur lors de l'upload : " + e.getMessage());
         }
     }
 
-    // Route pour télécharger un fichier
     @GetMapping("/download/{fileName}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String fileName) {
-        Resource resource = service.downloadFile(fileName);
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileName + "\"")
-                .contentType(MediaType.APPLICATION_OCTET_STREAM)
-                .body(resource);
+        try {
+            Resource resource = service.downloadFile(fileName);
+            return ResponseEntity.ok()
+                    .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileName + "\"")
+                    .body(resource);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(null);
+        }
     }
-
-
 }
+
