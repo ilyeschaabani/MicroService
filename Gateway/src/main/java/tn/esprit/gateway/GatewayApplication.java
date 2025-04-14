@@ -19,7 +19,7 @@ public class GatewayApplication {
         return builder.routes()
                 .route("AuthenticationMicroService", r -> r.path("/AuthenticationMicroService/**")
                         .filters(f -> f.stripPrefix(1)) // Removes '/AuthenticationMicroService' before forwarding
-                        .uri("lb://AUTHENTICATIONMICROSERVICE"))
+                            .uri("lb://AUTHENTICATIONMICROSERVICE"))
 
                 .build();
     }

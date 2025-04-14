@@ -1,0 +1,44 @@
+version: '3'
+services:
+  auth-service:
+    container_name: auth-service
+    build:
+      context: ./Authentification-MicroService
+      dockerfile: Dockerfile
+    ports:
+      - "9006:9006"
+    networks:
+      - pi-network
+    depends_on:
+      - eureka-server
+      - gateway
+
+  eureka-server:
+    container_name: eureka-server
+    build:
+      context: ./EurekaServer
+      dockerfile: Dockerfile
+    ports:
+      - "8761:8761"
+    networks:
+      - pi-network
+
+  gateway:
+    container_name: gateway
+    build:
+      context: ./Gateway
+      dockerfile: Dockerfile
+    ports:
+      - "8089:8089"
+    networks:
+      - pi-network
+    depends_on:
+      - eureka-server
+
+
+networks:
+  pi-network:
+    driver: bridge
+volumes:
+  mysql_data:
+    driver: local

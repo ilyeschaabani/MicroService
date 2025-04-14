@@ -35,8 +35,6 @@ public class ForgotPasswordController {
         this.securityConfig = securityConfig;
     }
 
-    //send mail for email verification
-
     @PostMapping("/verifyMail/{email}")
     public ResponseEntity<String> verifyEmail (@PathVariable String email) {
         User user = userRepository.findByEmail(email)
@@ -59,7 +57,6 @@ public class ForgotPasswordController {
 
     }
 
-
     @PostMapping("/verifyOTP/{otp}/{email}")
     public ResponseEntity<String> verifyOTP (@PathVariable Integer otp, @PathVariable String email) {
         User user = userRepository.findByEmail(email)
@@ -67,20 +64,20 @@ public class ForgotPasswordController {
 
       ForgotPassword fp =   forgotPasswordRepository.findByOtpAndUser(otp, user)
                 .orElseThrow(() -> new RuntimeException("Invalid OTP or User not found"+email));
-
         if (fp.getExpirationTime().before(Date.from(Instant.now()))) {
             forgotPasswordRepository.deleteById(fp.getFpid());
             return new ResponseEntity<>("OTP expired", HttpStatus.EXPECTATION_FAILED)   ;
         }
         return ResponseEntity.ok("OTP verified");
-
-
     }
+
     @PostMapping("/changePassword/{email}")
     public ResponseEntity<String> changePasswordHandler (@RequestBody ChangePassword changePassword, @PathVariable String email) {
+
     if (!Objects.equals(changePassword.password(), changePassword.rpeatPassword())) {
         return new ResponseEntity<>("passwords do not match", HttpStatus.EXPECTATION_FAILED);
     }
+
     String encodedpassword = securityConfig.passwordEncoder().encode(changePassword.password());
     userRepository.updatePassword(email, encodedpassword);
 
@@ -90,6 +87,7 @@ public class ForgotPasswordController {
 
     private Integer OTPGererator() {
         Random random = new Random();
-        return random.nextInt(100_000, 999_999);
+        return random.nextInt(900_000) + 100_000; // Generates a 6-digit number between 100000 and 999999
     }
+
 }
