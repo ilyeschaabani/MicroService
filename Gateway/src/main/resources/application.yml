@@ -1,0 +1,23 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: ACCOMPAGNEMENTPFEMICROSERVICE
+          uri: lb://ACCOMPAGNEMENTPFEMICROSERVICE
+          predicates:
+            - Path=/api/accompagnement/**
+
+        - id: PROJETMICROSERVICE
+          uri: lb://PROJETMICROSERVICE
+          predicates:
+            - Path=/api/projets/**
+server:
+  port: 9094
+eureka:
+  instance:
+    hostname: localhost
+
+servlet:
+  multipart:
+    max-file-size: 10MB
+    max-request-size: 10MB
