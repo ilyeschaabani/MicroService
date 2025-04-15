@@ -13,6 +13,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/questions")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequiredArgsConstructor
 public class QuestionController {
 
