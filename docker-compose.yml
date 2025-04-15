@@ -13,6 +13,19 @@ services:
       - eureka-server
       - gateway
 
+  accompagnementpfe-service:
+    container_name: accompagnementpfe-service
+    build:
+      context: ./AccompagnementPFEMicroService
+      dockerfile: Dockerfile
+    ports:
+      - "9093:9093"
+    networks:
+      - pi-network
+    depends_on:
+      - eureka-server
+      - gateway
+
 
 
 
