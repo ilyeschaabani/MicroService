@@ -1,0 +1,120 @@
+<div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+      <app-header></app-header>
+      
+      <div class="layout-page">
+        <div class="content-wrapper">
+          <!-- Content -->
+          <div class="container-xxl flex-grow-1 container-p-y">
+            <h4 class="fw-bold py-3 mb-4">
+              <span class="text-muted fw-light">Quiz /</span> Ajouter une Question
+            </h4>
+  
+            <!-- Card -->
+            <div class="card mb-4">
+              <h5 class="card-header">Nouvelle Question pour: {{qTitle}}</h5>
+              <div class="card-body">
+                <form (ngSubmit)="formSubmit()">
+                  <!-- Question Content -->
+                  <div class="mb-3">
+                    <label class="form-label">Contenu de la question</label>
+                    <textarea
+                      class="form-control"
+                      [(ngModel)]="question.contenu"
+                      name="content"
+                      rows="4"
+                      required
+                    ></textarea>
+                  </div>
+  
+                  <!-- Options -->
+                  <div class="row mb-3">
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">Option 1 (requise)</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        [(ngModel)]="question.option1"
+                        name="option1"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">Option 2 (requise)</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        [(ngModel)]="question.option2"
+                        name="option2"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">Option 3</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        [(ngModel)]="question.option3"
+                        name="option3"
+                      />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">Option 4</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        [(ngModel)]="question.option4"
+                        name="option4"
+                      />
+                    </div>
+                  </div>
+  
+                  <!-- Réponse -->
+                  <div class="mb-3">
+                    <label class="form-label">Réponse correcte</label>
+                    <select
+                      class="form-select"
+                      [(ngModel)]="question.answer"
+                      name="answer"
+                      required
+                    >
+                      <option value="" disabled selected>Sélectionnez une réponse</option>
+                      <option *ngIf="question.option1" [value]="question.option1">
+                        {{question.option1}}
+                      </option>
+                      <option *ngIf="question.option2" [value]="question.option2">
+                        {{question.option2}}
+                      </option>
+                      <option *ngIf="question.option3" [value]="question.option3">
+                        {{question.option3}}
+                      </option>
+                      <option *ngIf="question.option4" [value]="question.option4">
+                        {{question.option4}}
+                      </option>
+                    </select>
+                  </div>
+  
+                  <!-- Boutons -->
+                  <div class="mt-4">
+                    <button type="submit" class="btn btn-primary me-2">
+                      Enregistrer
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-outline-secondary"
+                      routerLink="/quiz/evaluation"
+                    >
+                      Annuler
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- / Content -->
+  
+        
+        </div>
+      </div>
+    </div>
+  </div>
