@@ -20,6 +20,14 @@ public class GatewayApplication {
                 .route("AuthenticationMicroService", r -> r.path("/AuthenticationMicroService/**")
                         .filters(f -> f.stripPrefix(1)) // Removes '/AuthenticationMicroService' before forwarding
                             .uri("lb://AUTHENTICATIONMICROSERVICE"))
+                .route("MIcroserviceEvaluation", r -> r.path("/evaluations/**")
+                        .uri("lb://MICROSERVICEEVALUATION")) // Doit correspondre au nom dans Eureka
+                .route("FormationMS", r->r.path("/api/formations/**")
+                        .uri("lb://FormationMS") )
+                .route("RessourceMicroService",r->r.path("/api/ressources/**")
+                        .uri("lb://RESSOURCEMICROSERVICE") )
+                .route("ACCOMPAGNEMENTPFEMICROSERVICE",r->r.path("/api/accompagnement/**")
+                        .uri("lb://ACCOMPAGNEMENTPFEMICROSERVICE") )
 
                 .build();
     }
