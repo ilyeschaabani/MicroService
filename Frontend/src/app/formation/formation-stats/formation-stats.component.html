@@ -1,0 +1,61 @@
+<app-navbar></app-navbar>
+<div class="container mt-5">
+  <h2 class="mb-4">Formation Statistics</h2>
+  
+  <div class="row">
+    <!-- Category Distribution -->
+    <div class="col-md-6 mb-4">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Distribution by Category</h5>
+        </div>
+        <div class="card-body">
+          <canvas baseChart
+            [data]="categoryData"
+            [type]="'doughnut'"
+            [options]="chartOptions">
+          </canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Price Statistics -->
+    <div class="col-md-6 mb-4">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Price Statistics</h5>
+        </div>
+        <div class="card-body">
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Average Price
+              <span class="badge bg-primary rounded-pill">{{ averagePrice | currency:'EUR' }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Highest Price
+              <span class="badge bg-success rounded-pill">{{ maxPrice | currency:'EUR' }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Lowest Price
+              <span class="badge bg-danger rounded-pill">{{ minPrice | currency:'EUR' }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rating Trends -->
+  <div class="card mb-4">
+    <div class="card-header">
+      <h5 class="card-title">Rating Trends</h5>
+    </div>
+    <div class="card-body">
+      <canvas baseChart
+        [data]="ratingData"
+        [type]="'line'"
+        [options]="chartOptions">
+      </canvas>
+    </div>
+  </div>
+</div>

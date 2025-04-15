@@ -1,0 +1,59 @@
+<!-- otp-verification.component.html -->
+<div class="container-xxl">
+    <div class="authentication-wrapper authentication-basic container-p-y">
+      <div class="authentication-inner">
+        <div class="card">
+          <div class="card-body">
+            <a routerLink="/home" class="text-decoration-none">
+              <div class="app-brand justify-content-center">
+                <img src="assets/img/images/Waves.png" alt="Waves" class="app-brand-logo me-2">
+              </div>
+            </a>
+  
+            <h4 class="mb-4">Vérification du code OTP 🔒</h4>
+            <p class="mb-4">Entrez le code de vérification à 6 chiffres envoyé à <strong>{{ email }}</strong></p>
+  
+            <form [formGroup]="otpForm" (ngSubmit)="verifyOTP()">
+              <div class="otp-input-group mb-4">
+                <div class="d-flex justify-content-center gap-2">
+                  <input type="text" id="digit1" formControlName="digit1" maxlength="1" 
+                    (input)="onInputChange($event, 'digit1', 'digit2')" autofocus>
+                  <input type="text" id="digit2" formControlName="digit2" maxlength="1"
+                    (input)="onInputChange($event, 'digit2', 'digit3')">
+                  <input type="text" id="digit3" formControlName="digit3" maxlength="1"
+                    (input)="onInputChange($event, 'digit3', 'digit4')">
+                  <input type="text" id="digit4" formControlName="digit4" maxlength="1"
+                    (input)="onInputChange($event, 'digit4', 'digit5')">
+                  <input type="text" id="digit5" formControlName="digit5" maxlength="1"
+                    (input)="onInputChange($event, 'digit5', 'digit6')">
+                  <input type="text" id="digit6" formControlName="digit6" maxlength="1"
+                    (input)="onInputChange($event, 'digit6')">
+                </div>
+                <div class="error-message text-center mt-2" *ngIf="errorMessage">
+                  {{ errorMessage }}
+                </div>
+              </div>
+  
+              <button class="btn btn-primary d-grid w-100 mb-3" type="submit" [disabled]="otpForm.invalid || isLoading">
+                <span *ngIf="!isLoading">Vérifier le code</span>
+                <span *ngIf="isLoading">Vérification en cours...</span>
+              </button>
+  
+              <div class="text-center">
+                <p class="mb-0">
+                  Vous n'avez pas reçu le code?
+                  <a href="javascript:void(0)" 
+                     class="text-primary text-decoration-none"
+                     (click)="resendOTP()"
+                     [class.disabled]="!canResend || isLoading">
+                    Renvoyer le code
+                  </a>
+                  <span *ngIf="!canResend" class="text-muted">({{ countdown }}s)</span>
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

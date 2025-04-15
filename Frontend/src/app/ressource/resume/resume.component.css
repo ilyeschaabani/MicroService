@@ -1,0 +1,19 @@
+.animated-resume-container {
+  animation: fadeIn 0.6s ease-in-out;
+  transition: box-shadow 0.3s ease;
+}
+
+.animated-resume-container:hover {
+  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.15);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

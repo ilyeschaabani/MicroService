@@ -1,0 +1,53 @@
+<app-navbar></app-navbar>
+
+<!--div class="container mt-3 text-end">
+  <button class="btn btn-outline-primary" (click)="goToCart()">
+    🛒 Voir mon panier
+  </button>
+</div-->
+
+<mat-tab-group>
+
+  <!-- 🟦 All Formations Tab -->
+  <mat-tab label="All Formations">
+    <div class="container mt-4">
+      <div class="row">
+        <div class="col-md-6 col-lg-4 mb-4" *ngFor="let formation of formations">
+          <div class="card h-100">
+            <img [src]="formation.image" class="card-img-top" alt="Course Image">
+            <div class="card-body">
+              <h5 class="card-title">{{ formation.titreFormation }}</h5>
+              <p class="card-text">{{ formation.description }}</p>
+              <p>⭐ {{ formation.rating }}</p>
+              <p>{{ formation.dateDebut | date }} - {{ formation.dateFin | date }}</p>
+              <p><strong>Prix:</strong> €{{ formation.prix }}</p>
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+
+  <!-- 🟨 Category Tabs -->
+  <mat-tab *ngFor="let cat of categories" [label]="cat">
+    <div class="container mt-4">
+      <div class="row">
+        <div class="col-md-6 col-lg-4 mb-4" *ngFor="let formation of filteredFormations(cat)">
+          <div class="card h-100">
+            <img [src]="formation.image" class="card-img-top" alt="Course Image">
+            <div class="card-body">
+              <h5 class="card-title">{{ formation.titreFormation }}</h5>
+              <p class="card-text">{{ formation.description }}</p>
+              <p>⭐ {{ formation.rating }}</p>
+              <p>{{ formation.dateDebut | date }} - {{ formation.dateFin | date }}</p>
+              <p><strong>Prix:</strong> €{{ formation.prix }}</p>
+             
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>

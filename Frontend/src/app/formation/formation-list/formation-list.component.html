@@ -1,0 +1,56 @@
+<app-navbar></app-navbar>
+<br><br><br>
+<div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+  {{ successMessage }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div class="card">
+    <h5 class="card-header">Liste des Formations</h5>
+    <button class="btn btn-primary btn-lg float-end" type="button" (click)="addFormation()">Ajouter une Formation</button>
+    <div class="table-responsive text-nowrap">
+      <table class="table">
+        <thead class="table-dark">
+          <tr>
+            <th>Titre</th>
+            <th>Description</th>
+            <th>Catégorie</th>
+            <th>Date Début</th>
+            <th>Date Fin</th>
+            <th>Prix</th> <!-- Replaced Statut with Prix -->
+            <th>Rating</th> <!-- Added Rating Column -->
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody class="table-border-bottom-0">
+          <tr *ngFor="let formation of formations">
+            <td>{{ formation.titreFormation }}</td>
+            <td>{{ formation.description }}</td>
+            <td>{{ formation.categorie }}</td>
+            <td>{{ formation.dateDebut | date:'dd/MM/yyyy' }}</td>
+            <td>{{ formation.dateFin | date:'dd/MM/yyyy' }}</td>
+            <td>{{ formation.prix | currency:'EUR' }}</td> <!-- Display price with currency -->
+            <td>
+              <span class="badge bg-label-warning">{{ formation.rating }} / 5</span> <!-- Display rating -->
+            </td>
+            <td>
+              <!-- Delete Button -->
+              <button type="button" class="btn btn-icon btn-danger" (click)="deleteFormation(formation.idFormation)">
+                <i class="bx bx-trash"></i>
+              </button>              
+            
+              <!-- Edit Button -->
+              <button type="button" class="btn btn-icon btn-primary" (click)="editFormation(formation.idFormation)">
+                <i class="bx bx-edit-alt"></i> 
+              </button>
+            </td>            
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-info btn-lg float-end me-2" 
+        type="button" 
+        routerLink="/formations/stats">
+  View Statistics
+</button>
+    </div>
+</div>

@@ -1,0 +1,125 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-5" *ngIf="selectedAccompagnement">
+  <div class="card border-0 shadow-lg overflow-hidden detail-card">
+    <!-- En-tête avec dégradé et icône -->
+    <div class="card-header bg-primary-gradient py-4 position-relative">
+      <div class="decorative-wave"></div>
+      <div class="d-flex justify-content-between align-items-center position-relative">
+        <div>
+          <h1 class="h2 text-white mb-1">
+            <i class="fas fa-book-open me-3"></i>{{ selectedAccompagnement.sujet }}
+          </h1>
+          <div class="d-flex align-items-center mt-2">
+            <i class="fas fa-user-tie text-white fs-5 me-2"></i>
+            <span class="badge bg-light text-primary fs-6 p-2">
+              Encadré par {{ selectedAccompagnement.encadrant }}
+            </span>
+          </div>
+        </div>
+        <i class="fas fa-graduation-cap fa-3x text-white opacity-25"></i>
+      </div>
+    </div>
+
+    <!-- Corps de la carte -->
+    <div class="card-body p-4">
+      <div class="row g-4">
+        <!-- Colonne gauche -->
+        <div class="col-lg-6">
+          <!-- Carte Description -->
+          <div class="info-card hover-effect">
+            <div class="d-flex align-items-start">
+              <div class="icon-wrapper bg-primary">
+                <i class="fas fa-file-alt text-white"></i>
+              </div>
+              <div class="ms-3">
+                <h5 class="text-primary mb-2">Description du projet</h5>
+                <p class="text-muted mb-0">{{ selectedAccompagnement.sujet }}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carte Étudiant -->
+          <div class="info-card hover-effect">
+            <div class="d-flex align-items-start">
+              <div class="icon-wrapper bg-success">
+                <i class="fas fa-user-graduate text-white"></i>
+              </div>
+              <div class="ms-3">
+                <h5 class="text-success mb-2">Étudiant</h5>
+                <p class="text-muted mb-0">{{ selectedAccompagnement.etudiant }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Colonne droite -->
+        <div class="col-lg-6">
+          <!-- Carte Compétences -->
+          <div class="info-card hover-effect">
+            <div class="d-flex align-items-start">
+              <div class="icon-wrapper bg-warning">
+                <i class="fas fa-tools text-white"></i>
+              </div>
+              <div class="ms-3">
+                <h5 class="text-warning mb-2">Compétences requises</h5>
+                <div class="d-flex flex-wrap gap-2">
+                  <span *ngFor="let competence of selectedAccompagnement.competences.split(',')" 
+                        class="badge skill-badge">
+                    {{ competence.trim() }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carte Spécialité & Niveau -->
+          <div class="info-card hover-effect">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="d-flex align-items-start">
+                  <div class="icon-wrapper bg-info">
+                    <i class="fas fa-layer-group text-white"></i>
+                  </div>
+                  <div class="ms-3">
+                    <h5 class="text-info mb-2">Spécialité</h5>
+                    <p class="text-muted mb-0">{{ selectedAccompagnement.specialite }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="d-flex align-items-start">
+                  <div class="icon-wrapper bg-danger">
+                    <i class="fas fa-signal text-white"></i>
+                  </div>
+                  <div class="ms-3">
+                    <h5 class="text-danger mb-2">Niveau</h5>
+                    <p class="text-muted mb-0">{{ selectedAccompagnement.niveau }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bouton de retour -->
+      <div class="mt-5 text-end">
+        <button class="btn btn-back" (click)="goBack()">
+          <i class="fas fa-arrow-left me-2"></i>Retour à la liste
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- État de chargement -->
+<div *ngIf="!selectedAccompagnement" class="loader-container">
+  <div class="loading-content">
+    <div class="spinner-grow text-primary" style="width: 4rem; height: 4rem;" role="status">
+      <span class="visually-hidden">Chargement...</span>
+    </div>
+    <p class="mt-4 text-primary fs-5 fw-medium">Chargement des informations...</p>
+  </div>
+</div>
+

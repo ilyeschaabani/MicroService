@@ -1,0 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'assets/css/demo.css';
+@import 'assets/vendor/css/core.css';
+@import 'assets/vendor/css/pages/front-page-landing.css';
+@import 'assets/vendor/css/pages/front-page.css';
+@import 'assets/vendor/fonts/iconify-icons.css';
+@import 'assets/vendor/libs/nouislider/nouislider.css';
+@import 'assets/vendor/libs/pickr/pickr-themes.css';
+@import 'assets/vendor/libs/swiper/swiper.css';

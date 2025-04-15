@@ -1,0 +1,100 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-4">
+  <!-- En-tête avec statistiques -->
+  <div class="row mb-4">
+    <div class="col-md-4">
+      <div class="card shadow-sm">
+        <div class="card-body text-center">
+          <h5 class="card-title">Total d'accompagnements</h5>
+          <span class="display-6 text-primary">{{ totalCount }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Barre de contrôles -->
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <div class="input-group">
+        <input type="text" 
+               class="form-control" 
+               placeholder="Rechercher par étudiant"
+               [(ngModel)]="searchName"
+               (input)="searchByName()">
+        <span class="input-group-text">
+          <i class="ri-search-line"></i>
+        </span>
+      </div>
+    </div>
+    
+   <!-- Add the button to navigate to the Collaborative Space -->
+<div class="col-md-4 text-end">
+    <button class="btn btn-info" [routerLink]="['/file-manager']">
+      <i class="bx bx-folder"></i> Espace Collaboratif
+    </button>
+  </div>
+  
+
+    <div class="col-md-4 text-end">
+        <button class="btn btn-success" (click)="exportCSV()">
+            <i class="bx bx-download"></i> Exporter en CSV
+          </button>
+    </div>
+  </div>
+
+  <!-- Tableau -->
+  <div class="table-responsive mt-3 shadow-sm">
+    <table class="table table-hover table-striped">
+      <thead class="table-primary">
+        <tr class="text-center">
+          <th>Étudiant</th>
+          <th>Encadrant</th>
+          <th>Sujet</th>
+          <th>Spécialité</th>
+          <th>Compétences</th>
+          <th>Niveau</th>
+          <th>Avancement (%)</th>
+        
+
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let acomp of accompagnements" class="text-center align-middle">
+          <td>{{ acomp.etudiant }}</td>
+          <td>{{ acomp.encadrant || 'N/A' }}</td>
+          <td>{{ acomp.sujet }}</td>
+          <td>{{ acomp.specialite }}</td>
+          <td>{{ acomp.competences }}</td>
+          <td>{{ acomp.niveau }}</td>
+         
+<!-- Remplacer la cellule d'avancement -->
+<td>
+    <div class="progress" style="height: 20px;">
+      <div class="progress-bar bg-success" 
+           role="progressbar" 
+           [style.width.%]="acomp.avancement"
+           [attr.aria-valuenow]="acomp.avancement"
+           aria-valuemin="0" 
+           aria-valuemax="100">
+        {{ acomp.avancement | number:'1.0-2' }}%
+      </div>
+    </div>
+  </td>        
+    <td>
+     <div class="d-flex align-items-center justify-content-center">
+            <!-- Détails -->
+            <a href="javascript:;" class="btn btn-sm btn-icon btn-text-secondary rounded-pill" 
+              data-bs-toggle="tooltip" title="Détails" 
+              (click)="openDetails(acomp)">
+              <i class="ri-eye-line ri-22px"></i>
+            </a>
+          </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

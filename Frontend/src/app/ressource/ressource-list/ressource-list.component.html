@@ -1,0 +1,142 @@
+<app-navbar></app-navbar>
+
+<div class="modern-container position-relative py-5 px-3 px-md-5">
+  <img src="../assets/img/front-pages/backgrounds/hero-bg.png" alt="Background" class="modern-bg" />
+
+  <!-- Barre de recherche et tri -->
+  <div class="card shadow-sm p-4 mb-4 search-card">
+    <h4 class="fw-bold mb-3 text-gradient">🔎 Filtrer les ressources</h4>
+    <div class="row g-3">
+      <!-- Recherche par mot-clé -->
+      <div class="col-md-6">
+        <input type="text" class="form-control shadow-sm"
+               [(ngModel)]="searchKeyword"
+               (input)="onSearch()"
+               placeholder="Rechercher par mot-clé...">
+      </div>
+
+      <!-- Filtrer par type -->
+      <div class="col-md-4">
+        <select class="form-select shadow-sm"
+                [(ngModel)]="searchType"
+                (change)="onSearch()">
+          <option value="">Tous les types</option>
+          <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+        </select>
+      </div>
+
+      <!-- Tri -->
+      <div class="col-md-2 d-flex justify-content-end gap-2">
+        <button class="btn btn-outline-secondary w-100" (click)="changeSort('titre')">
+          Titre
+          <i class="mdi"
+             [class.mdi-arrow-up]="sortBy === 'titre' && sortDirection === 'asc'"
+             [class.mdi-arrow-down]="sortBy === 'titre' && sortDirection === 'desc'"></i>
+        </button>
+        <button class="btn btn-outline-secondary w-100" (click)="changeSort('type')">
+          Type
+          <i class="mdi"
+             [class.mdi-arrow-up]="sortBy === 'type' && sortDirection === 'asc'"
+             [class.mdi-arrow-down]="sortBy === 'type' && sortDirection === 'desc'"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card glass-card shadow-lg p-4">
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+      <h2 class="text-gradient fw-bold m-0">📚 Ressources Disponibles</h2>
+      <button class="btn btn-gradient" 
+              data-bs-toggle="offcanvas" 
+              data-bs-target="#offcanvasAddRessource"
+              (click)="selectedResource = null">
+        <i class="bx bx-plus"></i> Ajouter
+      </button>
+    </div>
+
+    <div class="table-responsive rounded-4 overflow-hidden">
+      <table class="table table-hover align-middle text-center modern-table">
+        <thead>
+          <tr>
+            <th>Titre</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Fichier</th>
+            <th>Catégorie</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ressource of ressources">
+            <td>{{ ressource.titre }}</td>
+            <td>{{ ressource.description }}</td>
+            <td>{{ ressource.type }}</td>
+            <td>
+              <div class="d-flex justify-content-center flex-wrap gap-2">
+                <button class="btn-icon bg-light text-primary" 
+                        *ngIf="ressource.fileName" 
+                        (click)="downloadFile(ressource.type, ressource.fileName)">
+                  <i class="bx bx-download"></i>
+                </button>
+
+                <button class="btn-icon bg-light text-secondary" 
+                        *ngIf="ressource.fileName && isApdfWordDocument(ressource.fileName)" 
+                        data-bs-toggle="offcanvas" 
+                        data-bs-target="#offcanvasResumeRessource" 
+                        (click)="resumeFile(ressource.fileName)">
+                  <i class="bx bx-show"></i>
+                </button>
+
+                <a class="btn-icon bg-light text-info" 
+                   *ngIf="ressource.fileName" 
+                   [routerLink]="['/preview', ressource.idRessource]">
+                  <i class="bx bx-search-alt"></i>
+                </a>
+              </div>
+            </td>
+            <td>{{ ressource.category }}</td>
+            <td>
+              <div class="d-flex justify-content-center gap-2">
+                <button class="btn btn-warning btn-sm rounded-pill" 
+                        (click)="onModifyClick(ressource)" 
+                        data-bs-toggle="offcanvas" 
+                        data-bs-target="#offcanvasAddRessource">
+                  ✏️ Modifier
+                </button>
+                <button class="btn btn-danger btn-sm rounded-pill" 
+                        (click)="deleteRessource(ressource.idRessource)">
+                  🗑️ Supprimer
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Add Resource Offcanvas -->
+  <div class="offcanvas offcanvas-end xlCanvas" tabindex="-1" id="offcanvasAddRessource">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title">{{ selectedResource ? 'Modifier' : 'Ajouter' }} une Ressource</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <app-add-ressource 
+        [selectedResource]="selectedResource" 
+        (resourceUpdated)="onSubmitNotifaciton()">
+      </app-add-ressource>
+    </div>
+  </div>
+
+  <!-- Resume Offcanvas -->
+  <div class="offcanvas offcanvas-end xlCanvas" tabindex="-1" id="offcanvasResumeRessource">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title">Résumé de la Ressource</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <app-resume *ngIf="selectedFileName" [fileName]="selectedFileName"></app-resume>
+    </div>
+  </div>
+</div>

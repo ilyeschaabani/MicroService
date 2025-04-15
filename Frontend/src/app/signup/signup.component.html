@@ -1,0 +1,69 @@
+<body>
+	<div class="container-xxl">
+	  <div class="authentication-wrapper authentication-basic container-p-y">
+		<div class="authentication-inner" style="max-width: 540px">
+		  <div class="card">
+			<div class="card-body">
+			  <a href="#">
+				<div class="app-brand justify-content-center">
+				  <img src="" alt="CodingFactory" class="app-brand-logo me-2">
+				</div>
+			  </a>
+			  <h4 class="mb-2">L'aventure commence ici 🚀</h4>
+			  <p class="mb-2">Apprendre, Créer et découvrir Le Monde De Coding</p>
+			  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" id="formAuthentication" class="mb-3" enctype="multipart/form-data" method="POST">
+				<div class="alert alert-warning alert-dismissible" role="alert" *ngIf="message">
+				  {{ message }}
+				  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+				<div class="row g-2 mb-3">
+				  <div class="col mb-0">
+					<label for="name" class="form-label">Nom</label>
+					<input type="text" class="form-control" id="name" formControlName="nom" placeholder="Nom" autofocus/>
+				  </div>
+				  <div class="col mb-0">
+					<label for="prename" class="form-label">Prenom</label>
+					<input type="text" class="form-control" id="prename" formControlName="prenom" placeholder="Prénom" autofocus/>
+				  </div>
+				</div>
+				<div class="row g-2 mb-3">
+				  <div class="col mb-0">
+					<label for="phone" class="form-label">Telephone</label>
+					<input type="text" class="form-control" id="phone" formControlName="telephone" placeholder="Téléphone" autofocus/>
+				  </div>
+				  <div class="col mb-0">
+					<label for="address" class="form-label">Address</label>
+					<input type="text" class="form-control" id="address" formControlName="adresse" placeholder="Address" autofocus/>
+				  </div>
+				</div>
+				<div class="mb-3">
+				  <label for="email" class="form-label">Email</label>
+				  <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter votre Email" autofocus/>
+				</div>
+				<div class="mb-4">
+					<label for="defaultSelect" class="form-label">Role</label>
+					<select id="defaultSelect" formControlName="role" class="form-select">
+					  <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+					</select>
+				  </div>
+				<div class="mb-2 form-password-toggle">
+				  <label for="password" class="form-label">Mot de passe</label>
+				  <input type="password" id="password" class="form-control" formControlName="password" placeholder="Enter votre mot de passe" aria-describedby="password"/>
+				</div>
+				<div class="progress mb-3">
+				  <div id="PwdMeter" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+				</div>
+				<button type="submit" class="btn btn-primary mb-3 d-grid w-100" id="signupButton">S'inscrire</button>
+				<p class="text-center">
+				  <span>Vous avez déjà un compte?</span>
+				  <a routerLink="/login" class="fw-medium">
+					<span>Connectez-vous</span>
+				  </a>
+				</p>
+			  </form>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </body>

@@ -1,0 +1,23 @@
+<div *ngIf="loading">Loading comments...</div>  <!-- Show loading message while data is being fetched -->
+<!-- Comments list -->
+<div *ngIf="!loading">
+    <div *ngIf="comments.length > 0; else noComments">
+      <div *ngFor="let comment of comments" class="card mb-2">
+        <div class="card-body">
+          <p>{{ comment.content }}</p>  <!-- Display each comment content -->
+        </div>
+      </div>
+    </div>
+  
+    <ng-template #noComments>
+      <p>No comments available.</p>
+    </ng-template>
+  </div>
+<div class="mt-4 p-4">
+     <form (ngSubmit)="addComment()" class="form-inline">
+      <div class="form-group mb-2 w-75">
+        <textarea [(ngModel)]="newCommentContent" name="newCommentContent" class="form-control w-100" placeholder="Enter your comment" rows="3" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary mb-2 ml-2" [disabled]="!newCommentContent.trim()">Add Comment</button>
+    </form>
+  </div>

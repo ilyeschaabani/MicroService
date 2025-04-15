@@ -1,0 +1,41 @@
+<app-navbar></app-navbar>
+
+<div class="preview-section position-relative">
+  <!-- Background flou -->
+  <img src="../assets/img/front-pages/backgrounds/hero-bg.png" alt="Background"
+       class="hero-bg" />
+
+  <div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card ressource-card glass shadow-lg p-4">
+      <div class="card-body" *ngIf="ressource">
+
+        <!-- IMAGE -->
+        <img [src]="lienRessource | safeUrl"
+             *ngIf="ressource.type === 'IMAGE'"
+             class="img-fluid rounded modern-media mb-3" />
+
+        <!-- VIDEO -->
+        <video *ngIf="ressource.type === 'VIDEO'"
+               controls
+               class="w-100 rounded modern-media mb-3 shadow-sm">
+          <source [src]="lienRessource | safeUrl" type="video/mp4">
+          Votre navigateur ne prend pas en charge la balise vidéo.
+        </video>
+
+        <!-- DOCUMENT -->
+        <iframe *ngIf="ressource.type === 'DOCUMENT' && !isViewDoc"
+                [src]="lienRessource | safeUrl"
+                class="w-100 rounded border modern-media mb-3"
+                height="600px">
+        </iframe>
+
+        <iframe *ngIf="isViewDoc"
+                [src]="lienRessource | safeUrl"
+                class="w-100 rounded border modern-media mb-3"
+                height="600px">
+        </iframe>
+
+      </div>
+    </div>
+  </div>
+</div>

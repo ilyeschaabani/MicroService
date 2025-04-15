@@ -1,0 +1,17 @@
+<div class="container">
+    <!-- Create New Event Topic Button -->
+    <div class="mb-4 text-end">
+      <button (click)="createEventTopic()" class="btn btn-primary">
+        Create New Topic
+      </button>
+    </div>
+  
+    <!-- Event Topics Display in Flex Row -->
+    <div class="row g-4">
+        <div *ngFor="let eventTopic of eventTopics" class="col-12">
+          <app-topic [eventTopic]="eventTopic"     (reactionAdded)="onReactionAdded()">
+            ></app-topic>
+        </div>
+      </div>
+  </div>
+  

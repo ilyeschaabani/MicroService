@@ -1,0 +1,39 @@
+<app-navbar></app-navbar>
+<br><br><br>
+<div class="card">
+    <h5 class="card-header">Modifier la Formation</h5>
+    <div class="card-body">
+      <form [formGroup]="formationForm" (ngSubmit)="updateFormation()">
+        <div class="mb-3">
+          <label class="form-label">Titre</label>
+          <input type="text" class="form-control" formControlName="titreFormation">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Description</label>
+          <textarea class="form-control" formControlName="description"></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Catégorie</label>
+          <input type="text" class="form-control" formControlName="categorie">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Date Début</label>
+          <input type="date" class="form-control" formControlName="dateDebut">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Date Fin</label>
+          <input type="date" class="form-control" formControlName="dateFin">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Prix (€)</label>
+          <input type="number" class="form-control" formControlName="prix" step="0.01">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Rating (sur 5)</label>
+          <input type="number" class="form-control" formControlName="note" min="0" max="5" step="0.1">
+        </div>
+        <button type="submit" class="btn btn-primary">Mettre à jour</button>
+        <a routerLink="/formations" class="btn btn-secondary">Annuler</a>
+      </form>
+    </div>
+</div>
