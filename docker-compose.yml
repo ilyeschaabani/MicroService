@@ -13,7 +13,37 @@ services:
       - eureka-server
       - gateway
 
+  accompagnementpfe-service:
+    container_name: accompagnementpfe-service
+    build:
+      context: ./AccompagnementPFEMicroService
+      dockerfile: Dockerfile
+    ports:
+      - "9093:9093"
+    networks:
+      - pi-network
+    depends_on:
+      - eureka-server
+      - gateway
 
+  event-service:
+    container_name: event-service
+    build:
+      context: ./nomPrenomClasseExamen
+      dockerfile: Dockerfile
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/eventtopiccccc?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
+    ports:
+      - "8088:8088"
+    networks:
+      - pi-network
+    depends_on:
+      - eureka-server
+      - gateway
+      - mysql
 
 
   microserviceevaluation:
